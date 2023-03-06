@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+}
+.wall {
+    height: 60%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.safe {
+    position: relative;
+    min-width: 546px;
+    width: 35%;
+    min-height: 300px;
+    height: 75%;
+    margin: 10px;    
+}
+.front, .inside{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgb(54, 69, 79);
+}
+.inside {       
+    border: 60px inset grey;
+}
+.front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 20px inset;
+} 
+.handle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: rgb(54, 69, 79);
+    margin-right: 100px;
+    margin-left: 70px;
+    border: 5px inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#dial {
+    cursor: pointer;
+}        
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 10em;
+    height: 75%;
+    background-color: rgb(54, 69, 79);
+    border-radius: 5%;
+    border: 5px outset;
+    padding: 5px;
+    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.4), 
+            4px 4px 10px rgba(0, 0, 0, 0.7);
+
+}       
+.indicators {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    margin: 2px auto 3px;
+}        
+#red {
+    width: 10px;
+    height: 10px;
+    background-color: #f72119;
+    background-color: rgb(164, 68, 68);
+    border-radius: 50%;
+}       
+#green {
+    width: 10px;
+    height: 10px;
+    background-color: #22f032;
+    background-color: green;
+    border-radius: 50%;
+}        
+.output {
+    display: flex;
+    align-items: flex-end;
+}       
+.output p {
+    text-align: right;
+    font-size: 25px;
+}        
+#display {
+    background-color: green; 
+    width: 5.4em;
+    padding: 2px; 
+    height: 40px;
+    margin: auto auto 10px 5px ;
+}        
+#numbers {
+    font-size: 1.5em;
+    font-weight: 600;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(54, 69, 79);
+    margin: 2px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+            1px 1px 5px rgba(54, 69, 79, 0.7);
+            cursor: pointer;
+}
+#numbers:hover {
+    background-color: #000;
+    color: silver;
+}
