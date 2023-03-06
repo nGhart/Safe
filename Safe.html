@@ -5,226 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Safe</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-        }
-        body {
-            width: 100vw;
-            height: 100vh;
-        }
-        .wall {
-            min-width: 1450px;
-            height: 60%;
-            background-color: white;
-            display: flex;
-            align-items: center;
-        }
-        input {
-            width: 40px;
-            height: 80px;
-        }
-        .wedding {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 10%;
-            background-color: aqua; 
-            height: 100px;
-            margin-left: 50px;
-            margin-right: 350px;
-            padding-left: 0;
-        }
-        #weddingPic {
-            background-color: white; 
-            border: 10px solid #000; padding: 5px;
-        }
-        .sportsPic {
-            width: 30%;
-        }
-
-        .safe {
-            position: relative;
-            min-width: 546px;
-            width: 35%;
-            min-height: 300px;
-            height: 75%;
-            margin: 10px;
-            
-        }
-        .handle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background-color: rgb(54, 69, 79);
-            margin-right: 100px;
-            margin-left: 70px;
-            border: 5px inset;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .front, .inside{
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background-color: rgb(54, 69, 79);
-        }
-        .front {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            
-            border: 20px inset;
-        } 
-        .inside {
-            
-            border: 60px inset grey;
-        }
-        #dial {
-            cursor: pointer;
-        }
-        .indicators {
-            width: 30%;
-            display: flex;
-            justify-content: space-between;
-            margin: 2px auto 3px;
-
-        }
-        #red {
-            width: 10px;
-            height: 10px;
-            background-color: rgb(164, 68, 68);
-            background-color: #f72119;
-            border-radius: 50%;
-        }
-        #green {
-            width: 10px;
-            height: 10px;
-            background-color: #22f032;
-            background-color: green;
-            border-radius: 50%;
-        }
-        .output {
-            display: flex;
-            align-items: flex-end;
-        }
-        .output pre {
-  text-align: right;
-  font-size: 25px;
-}
-#display {
-    background-color: green; 
-    width: 5.4em;
-    padding: 2px; 
-    height: 40px;
-    margin: auto auto 10px 5px ;
-}
-
-        .input {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            width: 10em;
-            height: 75%;
-            background-color: rgb(54, 69, 79);
-            border-radius: 5%;
-            border: 5px outset;
-            padding: 5px;
-            box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.4), 
-                    4px 4px 10px rgba(0, 0, 0, 0.7);
-    
-        }
-        #numbers {
-            font-size: 1.5em;
-            font-weight: 600;
-            width: 35px;
-            height: 35px;
-            background-color: rgb(54, 69, 79);
-            margin: 2px;
-            border-radius: 50%;
-            border: none;
-            box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
-                    1px 1px 5px rgba(54, 69, 79, 0.7);
-                    cursor: pointer;
-        }
-        #numbers:hover {
-  background-color: #000;
-  color: silver;
-}
-
-.input button:active {
-  box-shadow: inset 1px 1px 5px rgba(94, 31, 31, 0.7),
-              inset -1px -1px 2px rgba(255, 255, 255, 0.3);
-  color: #9dd828;
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div>
+        <audio src="sounds/key-press.wav" id="keySound"></audio>
+        <audio autoplay>
+            <source src="sounds/Police Siren.wav.crdownload" type="audio/wav" />
+        </audio>
+    </div>
+    
+
     <div class="wall">
-        <div class="wedding">
-            <img src="wedding.png" alt="" width="100%" id="weddingPic">
-        </div>
         <div class="safe">
+
             <div class="inside" id="inside">
                 <h1>treasure</h1>
             </div>
+
             <div class="front" id="open">
                 <div class="handle">
-                    <img src="dial.png" alt="" width="100px" id="dial" onclick="turnDial()">
+                    <img src="images/dial.png" alt="" width="100px" id="dial" onclick="turnDial()">
                 </div>
-                <!--<form action="">
-                    <input type="" id="input1">
-                    <input type="" id="input2">
-                    <input type="" id="input3">
-                    <input type="" id="input4">
-                </form>-->
-                
                 <div class="container">
+                    <div class="indicators">
+                        <div id="red"></div>
+                        <div id="green"></div>
+                    </div>
+                    <div class="output">
+                        <p id="display"></p>
+                    </div>
                     <div class="keypad">
-                        
-                        <div class="input">
-                            <div class="indicators">
-                                <div id="red"></div>
-                                <div id="green"></div>
-                            </div>
-                            <div class="output">
-                            
-                                <pre id="display"></pre>
-                            </div>
-                            <button id="numbers" onclick="press(this)">1</button>
-                            <button id="numbers" onclick="press(this)">2</button>
-                            <button id="numbers" onclick="press(this)">3</button>
-                            <button id="numbers" onclick="press(this)">4</button>
-                            <button id="numbers" onclick="press(this)">5</button>
-                            <button id="numbers" onclick="press(this)">6</button>
-                            <button id="numbers" onclick="press(this)">7</button>
-                            <button id="numbers" onclick="press(this)">8</button>
-                            <button id="numbers" onclick="press(this)">9</button>
-                            <button id="numbers" onclick="pressClear()">C</button>
-                            <button id="numbers" onclick="press(this)">0</button>
-                            <button id="numbers" onclick="checkRandom()">#</button>
-                        </div>
+                        <button id="numbers" onclick="press(this)">1</button>
+                        <button id="numbers" onclick="press(this)">2</button>
+                        <button id="numbers" onclick="press(this)">3</button>
+                        <button id="numbers" onclick="press(this)">4</button>
+                        <button id="numbers" onclick="press(this)">5</button>
+                        <button id="numbers" onclick="press(this)">6</button>
+                        <button id="numbers" onclick="press(this)">7</button>
+                        <button id="numbers" onclick="press(this)">8</button>
+                        <button id="numbers" onclick="press(this)">9</button>
+                        <button id="numbers" onclick="pressClear()">C</button>
+                        <button id="numbers" onclick="press(this)">0</button>
+                        <button id="numbers" onclick="checkRandom()">=></button>
                     </div>
                 </div>
-                      
             </div>
-        </div>
-        <div class="sportsPic" style="height: 100px; width: 400px">
-            <img src="trophy.png" alt="" width="100px" style="margin-bottom: 0;">
-            <hr style="height: 10px; background-color: brown; margin-top: 0;">
+
         </div>
     </div>
+
 
     <div>
-        <img src="table.png" alt="">
+        <button id="">Help</button>
+        <button id="">Mute Sound</button>
+        <button id="">Mute Background Music</button>
+        <button id="">Reset</button>               
     </div>
-
-    <div class="resetButton">                
-    </div>
-    <div><audio src="key-press.wav" id="keySound"></audio></div>
+    
 <script src="script.js"></script>
 </body>
-
 </html>
