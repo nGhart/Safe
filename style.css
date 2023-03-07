@@ -1,10 +1,45 @@
+    /* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
-    box-sizing: border-box;
-    margin: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 body {
     width: 100vw;
     height: 100vh;
+    position: relative;
+}
+.game, #gameover {
+    position: absolute;
+}
+.game {
+    height: 100%;
+    width: 100%;
+}
+#timer {
+    font-size: 40px;
+    text-align: end;
+    padding: 20px;
+}
+#gameover {
+    background-color:rgba(0, 0, 0, 0.9);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+.gameoverModal {
+    background-color: aqua;
+    width: 40%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .wall {
     height: 60%;
@@ -72,18 +107,16 @@ body {
     margin: 2px auto 3px;
 }        
 #red {
-    width: 10px;
+    width: 20px;
     height: 10px;
-    background-color: #f72119;
-    background-color: rgb(164, 68, 68);
-    border-radius: 50%;
+    background-color: rgb(48, 18, 18);
+    border-radius: 5px;
 }       
 #green {
-    width: 10px;
+    width: 20px;
     height: 10px;
-    background-color: #22f032;
-    background-color: green;
-    border-radius: 50%;
+    background-color: rgb(41, 65, 41);
+    border-radius: 5px;
 }        
 .output {
     display: flex;
@@ -116,4 +149,16 @@ body {
 #numbers:hover {
     background-color: #000;
     color: silver;
+}
+input {
+  height: 45px;
+  width: 30px;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1.125rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  background-color: rgb(54, 69, 79);
+  border: 2px inset;
+  margin: 2px;
 }
