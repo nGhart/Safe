@@ -1,5 +1,3 @@
-let outputUpper = document.getElementById("upper");
-let outputLower = document.getElementById("lower");
 let open = document.getElementById("open");
 var keySound = document.getElementById("keySound");
 var siren = document.getElementById("siren");
@@ -11,7 +9,7 @@ let redLight = document.getElementById("red");
 let greenLight = document.getElementById("green");
 
 function game() {
-  let time = 40;
+  let time = 90;
 
   interval = setInterval(function(){
     timer.innerText = time + " s";
@@ -42,42 +40,51 @@ function playAudio() {
 }
 
 
-let currentInput = 1;
-const inputs = [document.getElementById("input1"),
-                document.getElementById("input2"),
-                document.getElementById("input3"),
-                document.getElementById("input4")];
-let code = "";
 
-function addKey(key) {
-  if (key == "#") {
-    console.log("Code entered: " + code);
-    // Here you can do whatever you want with the code entered
-    code = "";
-    for (let i = 0; i < 4; i++) {
-      inputs[i].value = "";
-    }
-    currentInput = 1;
-  } else {
-    if (currentInput <= 4) {
-      code += key;
-      inputs[currentInput-1].value = key;
-      currentInput++;
-      playAudio(); 
-    }
-  }
-}
+let inputOne = document.getElementById("input1").innerText;
+let inputTwo = document.getElementById("input2");
+let inputThree = document.getElementById("input3");
+//let inputFour = document.getElementById("input4");
+console.log(inputOne);
 
-//backspace - clear numbers one at a time
-function pressClear() {
-  
-        playAudio(); 
-}
+                let currentInput = 1;
+                const inputs = [document.getElementById("input1"),
+                                document.getElementById("input2"),
+                                document.getElementById("input3"),
+/*document.getElementById("input4")*/];
 
+                let code = "";
+
+                function addKey(key) {
+                  if (key == "#") {
+                    console.log(code);
+                    // Here you can do whatever you want with the code entered
+                    code = "";
+                    for (let i = 0; i < 3; i++) {
+                      inputs[i].value = "";
+                    }
+                    currentInput = 1;
+                  } else {
+                    if (currentInput <= 3) {
+                      code += key;
+                      inputs[currentInput-1].value = key;
+                      currentInput++;
+                      
+                    }
+                  }
+                }
+                
+                function clearInput() {
+                  if (currentInput > 1) {
+                    currentInput--;
+                    code = code.slice(0, -1);
+                    inputs[currentInput-1].value = "";
+                  }
+                }
 //random array
 let arr = [];
 
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < 3; i++) {
   const randomDigit = Math.floor(Math.random() * 10000)
     .toString()
     .padStart(4, "0")
@@ -85,29 +92,34 @@ for (let i = 0; i < 4; i++) {
   arr.push(Number(randomDigit));
 }
 
-console.log(arr); 
 
 //check if number guessed matches
 function checkRandom() {
-    let numb = parseInt(display.innerHTML);
-    /*let firstHint = document.getElementById("firstDigit");
+    /*let numb = parseInt(display.innerHTML);
+    let firstHint = document.getElementById("firstDigit");
     let secondHint = document.getElementById("secondDigit");
     let thirdHint = document.getElementById("thirdDigit");
     let fourthHint = document.getElementById("fourthDigit");
     let lastGuess = document.getElementById("lastGuess");*/
-    let hint = document.getElementsByTagName("h4")
     
-            const newArr = Array.from(String(numb), Number);
+    
+            /*const newArr = Array.from(String(numb), Number);*/
+            //console.log(newArr);
+            /*console.log(arr);*/
+            
+            console.log(code);
+            let numb = code;
+            console.log(numb);
+            const newArr = Array.from(String(code), Number);
             console.log(newArr);
             console.log(arr);
             lastGuess.innerHTML = numb;
+    let hint = document.getElementsByTagName("h4")
 
-
-          
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < 3; i++) {
     if (newArr[i] === arr[i]) {
       console.log(`Element ${i} is ok`);
-      hint[i].innerHTML = `Element ${i} is ok`;
+      hint[i].innerHTML = `${i} is ok`;
       redLight.style.backgroundColor = "rgb(48, 18, 18);";
       greenLight.style.backgroundColor = "#22f032";
     } else if (newArr[i] > arr[i]) {
