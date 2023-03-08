@@ -11,6 +11,7 @@ let reveal = document.getElementById("answer");
 let doorSound = document.getElementById("doorSound");
 let muteSound = document.getElementById("muteSound");
 let start = document.getElementById("start");
+let muteMusic = document.getElementById("muteMusic");
 
 
 
