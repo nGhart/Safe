@@ -11,7 +11,13 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100vw;
+  position: relative;
+  background: rgb(160,210,232);
+  background-image: url(images/gameBackground.png);
+  filter: saturate(8);
 }
+
 .game,
 #gameover {
   position: absolute;
@@ -21,73 +27,182 @@ body {
   width: 100%;
 }
 #timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 40px;
-  text-align: end;
-  padding: 20px;
+  padding: 20px;;
+  font-weight: 700;
+  margin-left: 40px;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  border: 5px solid #451875;
+  background-color: #aaafdd;  
 }
 #gameover {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgb(3, 0, 14);
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   visibility: hidden;
+  filter: saturate(4);
+  
 }
 .gameoverModal {
-  background-color: aqua;
+  background-color: rgba(0, 0, 0, 0.1);
   width: 40%;
   height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  
+  background-color: rgba(72, 156, 224, 0.9);
+  box-shadow: inset 2px 2px 5px rgba(225, 225, 226, 0.4), 
+            4px 4px 10px rgba(123, 26, 26, 0.7);
+  border-radius: 5px;
+}
+.gameoverModal, .cuffImage {
+  position: absolute;
+}
+.gameoverText {
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.gameoverText h1 {
+  color: rgb(160,210,232);
+  font-size: 80px;
+}
+#start {
+    background-color: rgba(0, 0, 0, 0.9);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+#startModal {
+    background: url(images/Thief.png);
+    background-size: cover;
+    filter: drop-shadow(8px 8px 10px gray);
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4), 
+            4px 4px 10px rgba(0, 0, 0, 0.7);
+  width: 70%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.modalContent {
+  background-color: rgba(227, 232,241, 0.8);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.title {
+  text-align: center;
+  font-size: 50px;
+  color:#451875;
+}
+hr {
+  background-color: yellow;
+  height: 5px;
+  width: 50%;
 }
 .wall {
   height: 60%;
-  background-color: white;
   display: flex;
-  justify-content: center;
+  margin-left: 60px;
   align-items: center;
 }
 .safe {
   position: relative;
-  min-width: 546px;
+  min-width: 600px;
   width: 35%;
-  min-height: 300px;
+  min-height: 355px;
   height: 75%;
   margin: 10px;
+  box-shadow: inset 2px 2px 20px rgba(0, 0, 0, 0.4), 
+            4px 4px 10px rgba(0, 0, 0, 0.7);
+}
+.front, .inside{
+    width: 100%;
+    height: 100%;
+    position: absolute;    
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4), 
+  4px 4px 10px rgba(0, 0, 0, 0.7);
+}
+.inside {       
+    border: 60px inset grey;
+    background-color: grey;
+}
+.safeContent {
+  position: relative;
+}
+.safeContent img {
+  position: absolute;
 }
 .front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 20px inset;
+    transform-origin: right;
+    transition: all 0.5s ease-in-out;
+    background-color: #28333b;
+} 
+#hide {
   display: flex;
-  height: 600px;
-  width: 700px;
-  margin-top: 10px;
-  margin-left: 15%;
-  background-image: url(images/safe2.png);
-  background-position: center;
-  background-size: 1400px 600px;
-  filter: drop-shadow(30px 40px 18px black);
-  justify-content: center;
-  align-items: center;
-  /*border: 20px inset;*/
-  backdrop-filter: ;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
+.openSafe {
+    transform: perspective(1200px) rotateY(105deg);  
+}
+.handle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; background-color: #28333b;
+    margin-right: 100px;
+    margin-left: 70px;
+    border: 5px inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#dial {
+    cursor: pointer;
+}  
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 10em;
-  height: 45%;
-  background-color: rgb(54, 69, 79);
-  border-radius: 5%;
-  /*border: 5px outset;*/
-  margin-left: 60%;
-  margin-bottom: 10%;
-  padding: 5px;
-  box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.4),
-    4px 4px 10px rgba(0, 0, 0, 0.7);
-}
+    /*display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 10em;
+    height: 75%;*/
+    background-color: rgb(54, 69, 79);
+    border-radius: 5%;
+    border: 5px inset;
+    padding: 5px;
+    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.4), 
+            4px 4px 10px rgba(0, 0, 0, 0.7);
+} 
 .indicators {
   width: 30%;
   display: flex;
@@ -97,23 +212,27 @@ body {
 #red {
   width: 20px;
   height: 10px;
-  background-color: rgb(201, 11, 11);
+  background-color: rgb(48, 18, 18);
   border-radius: 5px;
 }
 #green {
   width: 20px;
   height: 10px;
-  background-color: rgb(43, 139, 43);
+  background-color: rgb(41, 65, 41);
   border-radius: 5px;
 }
 .output {
+  /*width: 100%;
   display: flex;
-  margin: auto 2px auto 2px;
-  margin-left: 15px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+  margin-right: 25px;*/
 }
 .output p {
-  text-align: right;
-  font-size: 25px;
+  /*text-align: right;
+  font-size: 25px;*/
 }
 #display {
   background-color: chartreuse;
@@ -148,12 +267,27 @@ input {
   text-align: center;
   border: 1px solid #ddd;
   background-color: rgb(120, 206, 35);
+  background-color: #add021;
   border: 2px inset;
   margin: 0 3px 0 3px;
   margin-left: 5px;
+  font-weight: 700;
 }
 .keypad {
   margin: 5px auto 5px auto;
+}
+.lastGuess {
+    width: 20%;
+    height: 400px;
+    margin-right: 80px;
+  background-color: rgba(227, 232, 241, 0.8);
+  border-radius: 20px;
+  border: 2px solid #451875;
+}
+.lastGuess h3 {
+  color: #494d5f;
+  text-align: center;
+  margin: auto;
 }
 video {
   position: fixed;
@@ -168,5 +302,33 @@ video {
   background-size: cover;
   transition: 1s opacity;
 }
-image {
+
+.controls button, #startModal button, .gameoverText button {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background-color:#451875;
+    color: yellow;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 30px 5px 0 5px;
+    border: 2px inset #451875;
+    cursor: pointer;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+}
+#previousGuess {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 20px;
+  width: 40%;
+  margin-left: 30%;
+  margin-right: auto;
+  text-align: center;
+  background-color: rgba(170, 174, 181, 0.8);
+}
+.controls button {
+  background-color: #aaafdd;  
 }
