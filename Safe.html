@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safe</title>
+    <title>latest</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -37,7 +37,7 @@
                         <input type="text" id="input1" maxlength="1">
   <input type="text" id="input2" maxlength="1">
   <input type="text" id="input3" maxlength="1">
-  <input type="text" id="input4" maxlength="1">
+  <!--<input type="text" id="input4" maxlength="1">-->
                     </div>
                     <div class="keypad">
                         <button id="numbers" onclick="addKey('1')">1</button>
@@ -52,7 +52,7 @@
   <button id="numbers" onclick="addKey('8')">8</button>
   <button id="numbers" onclick="addKey('9')">9</button>
   <br>
-                        <button id="numbers" onclick="pressClear()">C</button>
+                        <button id="numbers" onclick="clearInput()">C</button>
                         <button id="numbers" onclick="addKey('0')">0</button>
                         <button id="numbers" onclick="checkRandom(), game()">=></button>
                     </div>
@@ -65,9 +65,10 @@
     <div>
         <div>
             <h3 id="lastGuess"></h3>
+            <h4 id="firstDigit"></h4>
             <h4 id="secondDigit"></h4>
             <h4 id="thirdDigit"></h4>
-            <h4 id="fourthDigit"></h4>
+            <!--<h4 id="fourthDigit"></h4>-->
         </div>
         <div>
             <button id="help">Help</button>
@@ -88,6 +89,6 @@
     </div>
 </div>
     
-<script src="script.js"></script>
+<script src="newscript.js"></script>
 </body>
 </html>
