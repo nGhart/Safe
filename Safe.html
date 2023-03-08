@@ -8,91 +8,127 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game">
-    <div id="timer"></div>
+
+<div class="game">
+
     <div>
         <audio src="sounds/key-press.wav" id="keySound"></audio>
-        <audio id="siren" src="sounds/Police Siren.wav.crdownload"></audio>  
+        <audio id="siren" src="sounds/Police Siren.wav.crdownload"></audio>
+        <audio id="doorSound" src="sounds/Door-Open-A2-www.fesliyanstudios.com.mp3"></audio>
     </div>
     
-
     <div class="wall">
+        <div class="lastGuess">
+        
+            
+            <!--shows most recent guess-->
+            <h3 id="lastGuess" style="font-size: 50px;">Hint</h3>
+            <!--shows whether digit is equal, higher or lower than corresponding digit in random-->
+                <h4 id="firstDigit"></h4>
+                <h4 id="secondDigit"></h4>
+                <h4 id="thirdDigit"></h4>
+                <!--<h4 id="fourthDigit"></h4>-->
+        </div> 
         <div class="safe">
 
-            <!inside view of safe-->
+            <!--inside view of safe-->
             <div class="inside" id="inside">
-                <h1>treasure</h1>
+                <div class="safeContent">
+                <img src="images/diamond.png" alt="" width="250px">
+                <img src="images/cash.png" alt="" width="250px">
+                <img src="images/R.png" alt="" width="350px">
+                <img src="images/moreCash.png" alt="" width="500px">
+                </div>
             </div>
 
             <!--front view of safe-->
             <div class="front" id="open">
-                <div class="handle">
-                    <!--<img src="images/dial.png" alt="" width="100px" id="dial" onclick="turnDial()">
-                </div>-->
-                <div class="container">
-                    <!-- lights that change depending on guess-->
-                    <div class="indicators">
-                        <div id="red"></div>
-                        <div id="green"></div>
+                <div id="hide">
+                    <div class="handle">
+                        <img src="images/dial.png" alt="" width="100px" id="dial" onclick="turnDial()">
                     </div>
-                    <div class="output">
-                        <input type="text" id="input1" maxlength="1">
-  <input type="text" id="input2" maxlength="1">
-  <input type="text" id="input3" maxlength="1">
-  <!--<input type="text" id="input4" maxlength="1">-->
+                    <div class="container">
+                        <!-- lights that change depending on guess-->
+                        <div class="indicators">
+                            <div id="red"></div>
+                            <div id="green"></div>
+                        </div><!--indicators close-->
+                        <div class="output">
+                            <input type="text" id="input1" maxlength="1">
+                            <input type="text" id="input2" maxlength="1">
+                            <input type="text" id="input3" maxlength="1"> <!--<input type="text" id="input4" maxlength="1">-->
+                        </div><!--output close-->
+                        <div class="keypad">
+                                <button id="numbers" onclick="addKey('1')">1</button>
+                                <button id="numbers" onclick="addKey('2')">2</button>
+                                <button id="numbers" onclick="addKey('3')">3</button>
+                                <br>
+                                <button id="numbers" onclick="addKey('4')">4</button>
+                                <button id="numbers" onclick="addKey('5')">5</button>
+                                <button id="numbers" onclick="addKey('6')">6</button>
+                                <br>
+                                <button id="numbers" onclick="addKey('7')">7</button>
+                                <button id="numbers" onclick="addKey('8')">8</button>
+                                <button id="numbers" onclick="addKey('9')">9</button>
+                                <br>
+                                <button id="numbers" onclick="clearInput()">C</button>
+                                <button id="numbers" onclick="addKey('0')">0</button>
+                                <button class="go" id="numbers" onclick="checkRandom()" style="background-color: green; font-size: 18px; padding: 0;" >go</button>
+                        </div><!--keypad close-->
+                    </div><!---->
                     </div>
-                    <div class="keypad">
-                        <button id="numbers" onclick="addKey('1')">1</button>
-  <button id="numbers" onclick="addKey('2')">2</button>
-  <button id="numbers" onclick="addKey('3')">3</button>
-  <br>
-  <button id="numbers" onclick="addKey('4')">4</button>
-  <button id="numbers" onclick="addKey('5')">5</button>
-  <button id="numbers" onclick="addKey('6')">6</button>
-  <br>
-  <button id="numbers" onclick="addKey('7')">7</button>
-  <button id="numbers" onclick="addKey('8')">8</button>
-  <button id="numbers" onclick="addKey('9')">9</button>
-  <br>
-                        <button id="numbers" onclick="clearInput()">C</button>
-                        <button id="numbers" onclick="addKey('0')">0</button>
-                        <button id="numbers" onclick="checkRandom(), game()">=></button>
-                    </div>
+                
                 </div>
             </div>
+            <div style="display: flex; flex-direction: column;">
 
-        </div>
-    </div>
-
-    <div>
-        <div>
-            <h3 id="lastGuess"></h3>
-            <h4 id="firstDigit"></h4>
-            <h4 id="secondDigit"></h4>
-            <h4 id="thirdDigit"></h4>
-            <!--<h4 id="fourthDigit"></h4>-->
-        </div>
-        <div>
-            <button id="help">Help</button>
-            <button id="muteSound">Mute Sound</button>
-            <button id="muteMusic">Mute Background Music</button>
-            <button id="restart">Reset</button>
+            <div id="timer">60s</div>
+            
+                
+            </div>
         </div>
         
-<p> Message is: <span id = "display_message"></span> </p>
+    <!--Will show previous guesses-->
+    <p id="previousGuess"> Previous guesses
+        <i id = "display_message" style="font-size: 20px; width: 100%;"></i> 
+    </p>
+    <div class="controls">
+        <button id="muteSound" onclick="muteKeypad()">Mute</button>
+        <button id="muteMusic" onclick="pauseMusic()">MM</button>
+        <button id="restart">Reset</button>
     </div>
 </div>
-    
+ 
 <!--modal that pops up when game is over-->
 <div id="gameover">
     <div class="gameoverModal">
-        <h1>GAME OVER!!</h1>
-        <div>
-            <button  onclick="reset()">Reset</button>
+        <div class="gameoverText">
+        <h1 style="color: white">GAME OVER!!</h1>
+        <h2 id="answer" style="color: white"></h2>
+        <button onclick="reset()">Restart</button>
+    </div>
+        
+        <div class="cuffImage">
+            <img id="cuff" src="images/hcuff.png" alt="">
         </div>
+        </div>
+    
+</div>
+
+<!--modal that shows up at start of game-->
+<div id="start">
+    <div id="startModal">
+        <div class="modalContent">
+            <h1 class="title">CRACK THE SAFE</h1>
+            <hr>
+        <p>Guess the code before time runs out</p>
+        <p>Crack the safe</p>
+        <p>Win the cash</p>
+        <button onclick="gametimer(), hideStartModal()">Start</button>
+    </div>
     </div>
 </div>
-    
-<script src="newscript.js"></script>
+
+<script src="script.js"></script>
 </body>
 </html>
