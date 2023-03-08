@@ -1,4 +1,4 @@
-    /* Import Google font - Poppins */
+/* Import Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
   margin: 0;
@@ -7,148 +7,137 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
-.game, #gameover {
-    position: absolute;
+.game,
+#gameover {
+  position: absolute;
 }
 .game {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 #timer {
-    font-size: 40px;
-    text-align: end;
-    padding: 20px;
+  font-size: 40px;
+  text-align: end;
+  padding: 20px;
 }
 #gameover {
-    background-color:rgba(0, 0, 0, 0.9);
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
 }
 .gameoverModal {
-    background-color: aqua;
-    width: 40%;
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background-color: aqua;
+  width: 40%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .wall {
-    height: 60%;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 60%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .safe {
-    position: relative;
-    min-width: 546px;
-    width: 35%;
-    min-height: 300px;
-    height: 75%;
-    margin: 10px;    
-}
-.front, .inside{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: rgb(54, 69, 79);
-}
-.inside {       
-    border: 60px inset grey;
+  position: relative;
+  min-width: 546px;
+  width: 35%;
+  min-height: 300px;
+  height: 75%;
+  margin: 10px;
 }
 .front {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 20px inset;
-} 
-.handle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: rgb(54, 69, 79);
-    margin-right: 100px;
-    margin-left: 70px;
-    border: 5px inset;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  height: 600px;
+  width: 700px;
+  margin-top: 10px;
+  margin-left: 15%;
+  background-image: url(images/safe2.png);
+  background-position: center;
+  background-size: 1400px 600px;
+  filter: drop-shadow(30px 40px 18px black);
+  justify-content: center;
+  align-items: center;
+  /*border: 20px inset;*/
+  backdrop-filter: ;
 }
-#dial {
-    cursor: pointer;
-}        
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 10em;
-    height: 75%;
-    background-color: rgb(54, 69, 79);
-    border-radius: 5%;
-    border: 5px outset;
-    padding: 5px;
-    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.4), 
-            4px 4px 10px rgba(0, 0, 0, 0.7);
-
-}       
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 10em;
+  height: 45%;
+  background-color: rgb(54, 69, 79);
+  border-radius: 5%;
+  /*border: 5px outset;*/
+  margin-left: 60%;
+  margin-bottom: 10%;
+  padding: 5px;
+  box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.4),
+    4px 4px 10px rgba(0, 0, 0, 0.7);
+}
 .indicators {
-    width: 30%;
-    display: flex;
-    justify-content: space-between;
-    margin: 2px auto 3px;
-}        
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  margin: 2px auto 3px;
+}
 #red {
-    width: 20px;
-    height: 10px;
-    background-color: rgb(48, 18, 18);
-    border-radius: 5px;
-}       
+  width: 20px;
+  height: 10px;
+  background-color: rgb(201, 11, 11);
+  border-radius: 5px;
+}
 #green {
-    width: 20px;
-    height: 10px;
-    background-color: rgb(41, 65, 41);
-    border-radius: 5px;
-}        
+  width: 20px;
+  height: 10px;
+  background-color: rgb(43, 139, 43);
+  border-radius: 5px;
+}
 .output {
-    display: flex;
-    align-items: flex-end;
-}       
+  display: flex;
+  margin: auto 2px auto 2px;
+  margin-left: 15px;
+}
 .output p {
-    text-align: right;
-    font-size: 25px;
-}        
+  text-align: right;
+  font-size: 25px;
+}
 #display {
-    background-color: green; 
-    width: 5.4em;
-    padding: 2px; 
-    height: 40px;
-    margin: auto auto 10px 5px ;
-}        
+  background-color: chartreuse;
+  width: 5.4em;
+  padding: 2px;
+  height: 40px;
+  margin: auto auto 10px 5px;
+}
 #numbers {
-    font-size: 1.5em;
-    font-weight: 600;
-    width: 35px;
-    height: 35px;
-    background-color: rgb(54, 69, 79);
-    margin: 2px;
-    border-radius: 50%;
-    border: none;
-    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
-            1px 1px 5px rgba(54, 69, 79, 0.7);
-            cursor: pointer;
+  font-size: 1.5em;
+  font-weight: 600;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(99, 112, 121);
+  margin: 2px auto 0 auto;
+  border-radius: 50%;
+  border: none;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    1px 1px 5px rgba(54, 69, 79, 0.7);
+  cursor: pointer;
 }
 #numbers:hover {
-    background-color: #000;
-    color: silver;
+  background-color: #000;
+  color: silver;
 }
 input {
   height: 45px;
@@ -158,7 +147,26 @@ input {
   font-size: 1.125rem;
   text-align: center;
   border: 1px solid #ddd;
-  background-color: rgb(54, 69, 79);
+  background-color: rgb(120, 206, 35);
   border: 2px inset;
-  margin: 2px;
+  margin: 0 3px 0 3px;
+  margin-left: 5px;
+}
+.keypad {
+  margin: 5px auto 5px auto;
+}
+video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+  transition: 1s opacity;
+}
+image {
 }
