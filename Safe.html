@@ -10,7 +10,7 @@
 <body>
 
 <div class="game">
-    <div id="timer"></div>
+    
     <div>
         <audio src="sounds/key-press.wav" id="keySound"></audio>
         <audio id="siren" src="sounds/Police Siren.wav.crdownload"></audio>
@@ -18,6 +18,18 @@
     </div>
     
     <div class="wall">
+        <div class="previousGuess">
+        
+            
+            <!--shows most recent guess-->
+            <h3 id="lastGuess" style="font-size: 50px;">lastt</h3>
+            <h5>
+                <!--shows whether digit is equal, higher or lower than corresponding digit in random-->
+                <span id="firstDigit"></span>/
+                <span id="secondDigit"></span>/
+                <span id="thirdDigit"></span>
+                <!--<span id="fourthDigit"></span>--></h5>
+        </div> 
         <div class="safe">
 
             <!--inside view of safe-->
@@ -40,8 +52,9 @@
                         <div class="output">
                             <input type="text" id="input1" maxlength="1">
                             <input type="text" id="input2" maxlength="1">
-                            <input type="text" id="input3" maxlength="1"> <!--<input type="text" id="input4" maxlength="1">--></div><!--output close-->
-                            <div class="keypad">
+                            <input type="text" id="input3" maxlength="1"> <!--<input type="text" id="input4" maxlength="1">-->
+                        </div><!--output close-->
+                        <div class="keypad">
                                 <button id="numbers" onclick="addKey('1')">1</button>
                                 <button id="numbers" onclick="addKey('2')">2</button>
                                 <button id="numbers" onclick="addKey('3')">3</button>
@@ -57,37 +70,30 @@
                                 <button id="numbers" onclick="clearInput()">C</button>
                                 <button id="numbers" onclick="addKey('0')">0</button>
                                 <button class="go" id="numbers" onclick="checkRandom()" style="background-color: green; font-size: 18px; padding: 0;" >go</button>
-                            </div><!--keypad close-->
-                        </div>
+                        </div><!--keypad close-->
+                    </div><!---->
                     </div>
                 
                 </div>
             </div>
+
+            <div id="timer">60s left</div>
         </div>
     <!--Will show previous guesses-->
-    <div class="previousGuess">
-        
-        <p> Previous guesses
-            <br> 
-            <i id = "display_message" style="font-size: 20px; width: 100%;"></i> 
-        </p>
-        <!--shows most recent guess-->
-        <h3 id="lastGuess" style="font-size: 50px;"></h3>
-        <h5>
-            <!--shows whether digit is equal, higher or lower than corresponding digit in random-->
-            <span id="firstDigit"></span>/
-            <span id="secondDigit"></span>/
-            <span id="thirdDigit"></span>
-            <!--<span id="fourthDigit"></span>--></h5>
-    </div> 
+    
     <div>
         <div class="controls">
             <button id="help">Help</button>
+            <br>
             <button id="muteSound" onclick="muteKeypad()">Mute</button>
+            <button id="muteMusic" onclick="pauseMusic()">MM</button><br>
             <button id="restart">Reset</button>
         </div>
     </div>
-    
+    <p> Previous guesses
+        <br> 
+        <i id = "display_message" style="font-size: 20px; width: 100%; background-color: aqua;"></i> 
+    </p>
 </div>
  
 <!--modal that pops up when game is over-->
@@ -112,6 +118,6 @@
     </div>
 </div>
 
-<script src="script.js"></script>
+<script src="git.js"></script>
 </body>
 </html>
