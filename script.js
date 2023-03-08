@@ -4,41 +4,60 @@ var siren = document.getElementById("siren");
 let restart = document.getElementById("restart");
 var timer = document.getElementById("timer");
 let gameoverPopup = document.getElementById("gameover");
-let interval;
+let timeCounter;
 let redLight = document.getElementById("red");
 let greenLight = document.getElementById("green");
+let reveal = document.getElementById("answer");
+let doorSound = document.getElementById("doorSound");
+let muteSound = document.getElementById("muteSound");
+let start = document.getElementById("start");
+let muteMusic = document.getElementById("muteMusic");
 
-function game() {
-  let time = 90;
 
-  interval = setInterval(function(){
-    timer.innerText = time + " s";
-    time-- ;
-    if (time == 15) {
+
+//changes
+function gametimer() {
+  let time = 60;
+  timeCounter = setInterval(function() {
+    timer.innerText = time + "s";
+    time--;
+    if (time == 15 && time >= 0) {
       playMusic();
     } else if(time == 0){
-      clearInterval(interval);
-      timer.innerText = " ";
-      muteMusic();
-      gameoverPopup.style.visibility = "visible";
-
+      clearInterval(timeCounter);
+      timer.innerText = "game over";
+      pauseMusic();
+    gameoverPopup.style.visibility = "visible";
+    reveal.innerHTML = "The code was: " + arr;
+    setTimeout(cuff, 5)
+  
     }
-  }, 1000);
+}, 1000);
 }
 
-//mute music
+//play music
 function playMusic() {
   siren.play();
-  }
+  } 
 
-function muteMusic() {
-  siren.pause();
-}  
+  //pause music
+  function pauseMusic(){
+    siren.pause();
+  }
 //play sound when a number key is pressed
 function playAudio() {
   keySound.play();
 }
 
+// mute keypad sound
+function muteKeypad() {
+    keySound.volume = 0.0;
+}
+//changes
+//play sound when safe opens
+function playSafe() {
+  doorSound.play();
+}
 
 
 let inputOne = document.getElementById("input1").innerText;
@@ -69,7 +88,7 @@ console.log(inputOne);
                       code += key;
                       inputs[currentInput-1].value = key;
                       currentInput++;
-                      
+                      setTimeout(playAudio, 10);
                     }
                   }
                 }
@@ -79,6 +98,7 @@ console.log(inputOne);
                     currentInput--;
                     code = code.slice(0, -1);
                     inputs[currentInput-1].value = "";
+                    setTimeout(playAudio, 10);
                   }
                 }
 //random array
@@ -114,45 +134,57 @@ function checkRandom() {
             console.log(newArr);
             console.log(arr);
             lastGuess.innerHTML = numb;
+   //changes
+  setTimeout(playAudio, 10);
     let hint = document.getElementsByTagName("h4")
-
+//changes
 for (let i = 0; i < 3; i++) {
     if (newArr[i] === arr[i]) {
       console.log(`Element ${i} is ok`);
-      hint[i].innerHTML = `${i} is ok`;
+      hint[i].innerHTML = `Position (${i}) is correct`;
       redLight.style.backgroundColor = "rgb(48, 18, 18);";
       greenLight.style.backgroundColor = "#22f032";
     } else if (newArr[i] > arr[i]) {
-      console.log(`Element ${i} is too high`);
-      hint[i].innerHTML = `Element ${i} too high`;
+      console.log(`Element ${i} H`);
+      hint[i].innerHTML = `Position (${i}) is high`;
       redLight.style.backgroundColor = "#f72119";
       greenLight.style.backgroundColor = "rgb(41, 65, 41)";
     } else if (newArr[i] < arr[i]) {
-      console.log(`Element ${i} is too low`);
-      hint[i].innerHTML = `Element ${i} is too low`;
+      console.log(`Element ${i} L`);
+      hint[i].innerHTML = `Position (${i}) is low`;
       redLight.style.backgroundColor = "#f72119";
       greenLight.style.backgroundColor = "rgb(41, 65, 41)";
     }
   }
-}
+  showMessage();
+  if (newArr[0] == arr[0] && newArr[1] == arr[1] && newArr[2] == arr[2]) {
+    redLight.style.backgroundColor = "rgb(48, 18, 18);";
+      greenLight.style.backgroundColor = "#22f032";
+    console.log("");
+    clearInterval(timeCounter);
+    pauseMusic();
+    setTimeout(playSafe, 100);
+      timer.innerText = "you win";
+      setTimeout(openSafe, 2000);
 
-//function to rotate safe dial
-var looper;
-var degrees = 0;
-var speed = 1;
-function turnDial() {
-    var dial = document.getElementById("dial");
-    dial.style.transform = "rotate("+degrees+"deg)";
-    looper = setTimeout("turnDial(\''+dial+'\','+speed+')",speed);
-    degrees++;
-    if(degrees>359){
-        degrees = 1;
+    } else {
+      console.log("try again");
     }
 }
 
 //open safe
+
 function openSafe() {
-  open.style.transform = "perspective(1000px) rotateY(-90deg) scale(0.7)"
+  openSafeDoor();
+  setTimeout(hideBackOfSafe, 200);
+}
+function openSafeDoor() {
+  open.classList.toggle("openSafe");
+}
+//let back of safe be plain
+let hide = document.getElementById("hide");
+function hideBackOfSafe() {
+  hide.style.visibility = "hidden";
 }
 
 //restart game
@@ -163,11 +195,17 @@ restart.addEventListener("click", function (e) {
 //restart game after game over
 function reset() {
   gameoverPopup.style.visibility = "hidden";
+  location.reload();
 }
+//display all previous guesses
 var entries=[];
 var display_message = document.getElementById("display_message");
 function showMessage(){
-var message = hint[i].innerHTML;
-entries.push(message);
-display_message.innerHTML= entries.join(",");
+entries.push(lastGuess.innerHTML);
+display_message.innerHTML= entries.join(", ");
+}
+
+//hide start modal
+function hideStartModal() {
+  start.style.visibility = "hidden";
 }
