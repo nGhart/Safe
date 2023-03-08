@@ -15,12 +15,12 @@ let muteMusic = document.getElementById("muteMusic");
 
 
 
-//changes
+//timer
 function gametimer() {
   let time = 60;
   timeCounter = setInterval(function() {
     timer.innerText = time + "s";
-    time--;
+      time--;
     if (time == 15 && time >= 0) {
       playMusic();
     } else if(time == 0){
@@ -29,8 +29,6 @@ function gametimer() {
       pauseMusic();
     gameoverPopup.style.visibility = "visible";
     reveal.innerHTML = "The code was: " + arr;
-    setTimeout(cuff, 5)
-  
     }
 }, 1000);
 }
@@ -59,33 +57,28 @@ function playSafe() {
   doorSound.play();
 }
 
-
+//get user input from keypad
 let inputOne = document.getElementById("input1").innerText;
 let inputTwo = document.getElementById("input2");
 let inputThree = document.getElementById("input3");
-//let inputFour = document.getElementById("input4");
-console.log(inputOne);
+let currentInput = 1;
+const inputs = [document.getElementById("input1"),
+                document.getElementById("input2"),
+                document.getElementById("input3"),];
 
-                let currentInput = 1;
-                const inputs = [document.getElementById("input1"),
-                                document.getElementById("input2"),
-                                document.getElementById("input3"),
-/*document.getElementById("input4")*/];
-
-                let code = "";
+                let userInput = "";
 
                 function addKey(key) {
                   if (key == "#") {
-                    console.log(code);
-                    // Here you can do whatever you want with the code entered
-                    code = "";
+                    console.log(userInput);
+                    userInput = "";
                     for (let i = 0; i < 3; i++) {
                       inputs[i].value = "";
                     }
                     currentInput = 1;
                   } else {
                     if (currentInput <= 3) {
-                      code += key;
+                      userInput += key;
                       inputs[currentInput-1].value = key;
                       currentInput++;
                       setTimeout(playAudio, 10);
@@ -96,7 +89,7 @@ console.log(inputOne);
                 function clearInput() {
                   if (currentInput > 1) {
                     currentInput--;
-                    code = code.slice(0, -1);
+                    userInput = userInput.slice(0, -1);
                     inputs[currentInput-1].value = "";
                     setTimeout(playAudio, 10);
                   }
@@ -115,94 +108,79 @@ for (let i = 0; i < 3; i++) {
 
 //check if number guessed matches
 function checkRandom() {
-    /*let numb = parseInt(display.innerHTML);
-    let firstHint = document.getElementById("firstDigit");
-    let secondHint = document.getElementById("secondDigit");
-    let thirdHint = document.getElementById("thirdDigit");
-    let fourthHint = document.getElementById("fourthDigit");
-    let lastGuess = document.getElementById("lastGuess");*/
-    
-    
-            /*const newArr = Array.from(String(numb), Number);*/
-            //console.log(newArr);
-            /*console.log(arr);*/
-            
-            console.log(code);
-            let numb = code;
-            console.log(numb);
-            const newArr = Array.from(String(code), Number);
-            console.log(newArr);
-            console.log(arr);
-            lastGuess.innerHTML = numb;
-   //changes
-  setTimeout(playAudio, 10);
+    console.log(userInput);
+    let numb = userInput;
+    const newArr = Array.from(String(userInput), Number);
+    lastGuess.innerHTML = numb;
+    playAudio();
     let hint = document.getElementsByTagName("h4")
-//changes
-for (let i = 0; i < 3; i++) {
-    if (newArr[i] === arr[i]) {
-      console.log(`Element ${i} is ok`);
-      hint[i].innerHTML = `Position (${i}) is correct`;
-      redLight.style.backgroundColor = "rgb(48, 18, 18);";
-      greenLight.style.backgroundColor = "#22f032";
-    } else if (newArr[i] > arr[i]) {
-      console.log(`Element ${i} H`);
-      hint[i].innerHTML = `Position (${i}) is high`;
-      redLight.style.backgroundColor = "#f72119";
-      greenLight.style.backgroundColor = "rgb(41, 65, 41)";
-    } else if (newArr[i] < arr[i]) {
-      console.log(`Element ${i} L`);
-      hint[i].innerHTML = `Position (${i}) is low`;
-      redLight.style.backgroundColor = "#f72119";
-      greenLight.style.backgroundColor = "rgb(41, 65, 41)";
+    
+    for (let i = 0; i < 3; i++) {
+        if (newArr[i] === arr[i]) {
+            console.log(`Element ${i} is ok`);
+            hint[i].innerHTML = `Element (${i}) is correct`;
+            redLight.style.backgroundColor = "rgb(48, 18, 18);";
+            greenLight.style.backgroundColor = "#22f032";
+        } else if (newArr[i] > arr[i]) {
+            console.log(`Element ${i} H`);
+            hint[i].innerHTML = `Element (${i}) is high`;
+            redLight.style.backgroundColor = "#f72119";
+            greenLight.style.backgroundColor = "rgb(41, 65, 41)";
+        } else if (newArr[i] < arr[i]) {
+            console.log(`Element ${i} L`);
+            hint[i].innerHTML = `Element (${i}) is low`;
+            redLight.style.backgroundColor = "#f72119";
+            greenLight.style.backgroundColor = "rgb(41, 65, 41)";
+        }
     }
-  }
-  showMessage();
-  if (newArr[0] == arr[0] && newArr[1] == arr[1] && newArr[2] == arr[2]) {
-    redLight.style.backgroundColor = "rgb(48, 18, 18);";
-      greenLight.style.backgroundColor = "#22f032";
-    console.log("");
-    clearInterval(timeCounter);
-    pauseMusic();
-    setTimeout(playSafe, 100);
-      timer.innerText = "you win";
-      setTimeout(openSafe, 2000);
+    
+    showMessage();
 
+    if (newArr[0] == arr[0] && newArr[1] == arr[1] && newArr[2] == arr[2]) {
+        redLight.style.backgroundColor = "rgb(48, 18, 18);";
+        greenLight.style.backgroundColor = "#22f032";
+        clearInterval(timeCounter);
+        pauseMusic();
+        setTimeout(playSafe, 100);
+        timer.innerText = "win";
+        setTimeout(openSafe, 2000);
     } else {
-      console.log("try again");
+        console.log("try again");
     }
 }
 
 //open safe
-
 function openSafe() {
   openSafeDoor();
   setTimeout(hideBackOfSafe, 200);
 }
+//this opens safe door
 function openSafeDoor() {
   open.classList.toggle("openSafe");
 }
-//let back of safe be plain
+//this hides back of safe be plain
 let hide = document.getElementById("hide");
 function hideBackOfSafe() {
   hide.style.visibility = "hidden";
 }
 
-//restart game
+//restart game during play
 restart.addEventListener("click", function (e) {
   e.preventDefault();
   location.reload();
 });
+
 //restart game after game over
 function reset() {
   gameoverPopup.style.visibility = "hidden";
   location.reload();
 }
 //display all previous guesses
-var entries=[];
-var display_message = document.getElementById("display_message");
+var prevGuess=[];
+var oldGuesses = document.getElementById("oldGuesses");
 function showMessage(){
-entries.push(lastGuess.innerHTML);
-display_message.innerHTML= entries.join(", ");
+prevGuess.push(lastGuess.innerHTML);
+oldGuesses.innerHTML= prevGuess.join(", ");
 }
 
 //hide start modal
